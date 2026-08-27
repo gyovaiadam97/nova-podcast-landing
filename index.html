@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Saját üzleti podcast a Nova stúdiójából | Nova</title>
-<meta name="description" content="Fél nap forgatás, egy teljes hónapnyi tartalom. Saját üzleti podcast a Nova stúdiójából: vendégszervezés, forgatás, vágás, minden a miénk, te csak beszélgetsz.">
+<meta name="description" content="Fél nap forgatás, egy teljes hónapnyi tartalom. Saját üzleti podcast a Nova stúdiójából: forgatás, vágás, utómunka, minden a miénk, te csak beszélgetsz.">
 
 <!-- ============================================================
      META PIXEL - IDE KELL A VALÓDI PIXEL ID, AMINT MEGVAN!
@@ -123,7 +123,8 @@
   /* LOGO STRIP */
   .logos { padding: 34px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--bg-soft); }
   .logos .wrap { display: flex; flex-wrap: wrap; gap: 18px 44px; align-items: center; justify-content: center; }
-  .logos span { font-family: 'Archivo', sans-serif; font-weight: 700; letter-spacing: 0.1em; color: var(--muted); font-size: 1rem; }
+  .logos img { height: 34px; width: auto; opacity: 0.85; }
+  .logos img.logo-tall { height: 52px; }
   .logos .label { width: 100%; text-align: center; font-family: 'Manrope', sans-serif; font-size: 0.78rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
 
   /* PROBLEM */
@@ -279,7 +280,7 @@
     <div>
       <span class="kicker">Cégvezetőknek, akik nem érnek rá tartalmat gyártani</span>
       <h2>Neked csak le kell ülnöd beszélgetni.</h2>
-      <p class="lead">Fél nap forgatásból elkészítjük a teljes havi tartalmadat: 2 podcast-epizód, 4 short videó, posztötletek. Vendégszervezés, stúdió, csapat, vágás, minden a miénk.</p>
+      <p class="lead">Fél nap forgatásból elkészítjük a teljes havi tartalmadat: 2 podcast-epizód, 4 short videó, posztötletek. Stúdió, csapat, vágás, utómunka, minden a miénk.</p>
       <a class="btn" href="#jelentkezes" onclick="trackLead()">Megnézem, működne-e nálam</a>
       <p class="btn-note">Rövid kérdőív, 48 órán belül visszajelzünk.</p>
     </div>
@@ -291,7 +292,11 @@
 <div class="logos">
   <div class="wrap">
     <span class="label">Ilyen márkák kommunikációját erősítettük már</span>
-    <span>BMW</span><span>TELEKOM</span><span>OTP BANK</span><span>GUNDEL</span><span>MM</span><span>BETHESDA</span><span>RAPID MATEK</span>
+    <img src="assets/logos/bethesda.png" alt="Bethesda Gyermekkórház" class="logo-tall">
+    <img src="assets/logos/mnb.png" alt="Magyar Nemzeti Bank">
+    <img src="assets/logos/gundel.png" alt="Gundel" class="logo-tall">
+    <img src="assets/logos/telekom.png" alt="Telekom">
+    <img src="assets/logos/otp.png" alt="OTP Bank">
   </div>
 </div>
 
@@ -347,7 +352,7 @@
       <div class="step">
         <div class="num">2</div>
         <h3>Forgatunk</h3>
-        <p>Fél nap a stúdióban. Mi hozzuk a technikát, a hétfős csapatot, az előkészített témákat és a leszervezett vendégeket. Te csak beszélgetsz.</p>
+        <p>Fél nap a stúdióban. Mi hozzuk a technikát, a hétfős csapatot és az előkészített témákat. Te csak beszélgetsz.</p>
       </div>
       <div class="step">
         <div class="num">3</div>
@@ -439,16 +444,15 @@
     <h2 style="text-align: center;">Nincs előfizetés. Akkor fizetsz, amikor forgatsz.</h2>
     <div class="price-card">
       <span class="badge">Havonta te döntöd el, kell-e forgatás</span>
-      <div class="big">300 000 Ft + ÁFA-tól</div>
+      <div class="big">299 900 Ft + ÁFA-tól</div>
       <div class="per">forgatási alkalmanként</div>
       <ul>
         <li>2 podcast-epizód + 4 short videó, publikálásra készen</li>
-        <li>Stúdió, hétfős csapat, vendégszervezés, teljes utómunka</li>
+        <li>Stúdió, hétfős csapat, teljes utómunka</li>
         <li>Márkázott intro-outro, zenelicensz, ügyfél-dashboard</li>
         <li>Átadás 1,5-2 héten belül</li>
       </ul>
-      <a class="btn" href="#jelentkezes" onclick="trackLead()">Jelentkezem a Strategy Fitre</a>
-      <p class="price-note">Az első alkalom ára tartalmazza az egyszeri indulást is: adástematika és stratégiai egyeztetés. A további alkalmak ára 219 940 Ft + ÁFA.</p>
+      <a class="btn" href="#jelentkezes" onclick="trackLead()">Jelentkezem</a>
     </div>
   </div>
 </section>
@@ -460,11 +464,11 @@
     <h2>Amit még tudni érdemes</h2>
     <details>
       <summary>Nincs még témám, se vendégem. Így is el tudok indulni?</summary>
-      <p>Igen, pontosan ezért van az első stratégiai beszélgetés. Ott közösen rakjuk össze az adástematikát, a vendéglistát pedig mi szervezzük le helyetted. A vendégek forgatási tájékoztatót is kapnak tőlünk.</p>
+      <p>Igen, pontosan ezért van az első stratégiai beszélgetés. Ott közösen rakjuk össze az adástematikát, és abban is segítünk, milyen vendégeket érdemes meghívnod, hogy a podcast az üzleti célodat szolgálja.</p>
     </details>
     <details>
       <summary>Mennyi időmet veszi el havonta?</summary>
-      <p>A forgatási fél napot, plusz egy 60 perces előkészítő beszélgetést. Minden mást, a szervezéstől a vágásig, a Nova csapata visz.</p>
+      <p>A forgatási fél napot, plusz egy 60 perces előkészítő beszélgetést. Minden mást, a forgatás szervezésétől a vágásig, a Nova csapata visz.</p>
     </details>
     <details>
       <summary>Mi van, ha egy hónapban nem fér bele a forgatás?</summary>
