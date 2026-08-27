@@ -239,11 +239,18 @@
   .custom-phone:hover { text-decoration: underline; }
   .custom-form { display: grid; gap: 12px; }
   .custom-form label { font-size: 0.82rem; font-weight: 700; color: var(--muted); letter-spacing: 0.04em; }
-  .custom-form input, .custom-form textarea {
+  .custom-form input, .custom-form textarea, .custom-form select {
     width: 100%; background: var(--bg); border: 1px solid var(--line); border-radius: 10px;
     padding: 12px 14px; color: var(--text); font-family: 'Manrope', sans-serif; font-size: 0.95rem;
   }
-  .custom-form input:focus, .custom-form textarea:focus { outline: 2px solid var(--cyan); outline-offset: 0; border-color: transparent; }
+  .custom-form input:focus, .custom-form textarea:focus, .custom-form select:focus { outline: 2px solid var(--cyan); outline-offset: 0; border-color: transparent; }
+  .fit-form { max-width: 560px; margin: 0 auto 18px; text-align: left; }
+  .fit-form label { display: block; margin-bottom: 6px; }
+  .fit-two { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .fit-check { display: grid; grid-template-columns: 20px 1fr; gap: 12px; align-items: start; cursor: pointer; }
+  .fit-check input { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--cyan); }
+  .fit-check span { font-size: 0.9rem; color: var(--muted); font-weight: 400; letter-spacing: 0; }
+  @media (max-width: 560px) { .fit-two { grid-template-columns: 1fr; } }
   .custom-form textarea { min-height: 110px; resize: vertical; }
   .form-status { font-size: 0.92rem; display: none; padding: 12px 14px; border-radius: 10px; }
   .form-status.ok { display: block; background: rgba(63, 217, 207, 0.12); color: var(--cyan); }
@@ -310,7 +317,7 @@
       <h2>Neked csak le kell ülnöd beszélgetni.</h2>
       <p class="lead">Fél nap forgatásból elkészítjük a teljes havi tartalmadat: 2 podcast-epizód, 4 short videó, posztötletek. Stúdió, csapat, vágás, utómunka, minden a miénk.</p>
       <a class="btn" href="#jelentkezes" onclick="trackLead()">Megnézem, működne-e nálam</a>
-      <p class="btn-note">Rövid kérdőív, 48 órán belül visszajelzünk.</p>
+      <p class="btn-note">Rövid űrlap, 48 órán belül visszajelzünk.</p>
     </div>
     <img src="assets/asztal-mikrofonok.jpg" alt="Podcast asztal két mikrofonnal a Nova stúdióban">
   </div>
@@ -561,6 +568,45 @@ document.getElementById('egyedi-form').addEventListener('submit', async function
   }
   btn.disabled = false; btn.textContent = 'Üzenet küldése';
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+document.getElementById('fit-form').addEventListener('submit', async function (e) {
+  e.preventDefault();
+  var btn = document.getElementById('fit-submit');
+  var status = document.getElementById('fit-status');
+  btn.disabled = true; btn.textContent = 'Küldés...';
+  status.className = 'form-status';
+  try {
+    var resp = await fetch('https://formsubmit.co/ajax/info@novastudio.hu', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        _subject: 'Podcast-fit jelentkezés érkezett',
+        _template: 'table',
+        'Teljes név': document.getElementById('fit-nev').value,
+        'Email': document.getElementById('fit-email').value,
+        'Telefonszám': document.getElementById('fit-tel').value,
+        'Cégnév': document.getElementById('fit-ceg').value,
+        'Iparág': document.getElementById('fit-iparag').value,
+        'Éves nettó árbevétel': document.getElementById('fit-arbevetel').value,
+        'Legnagyobb akadály': document.getElementById('fit-akadaly').value,
+        'Döntéshozó': document.getElementById('fit-donteshozo').value,
+        'Készen áll az indulásra': document.getElementById('fit-commit').checked ? 'igen' : 'nem',
+        _honey: this.querySelector('[name="_honey_fit"]').value
+      })
+    });
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+    status.textContent = 'Megkaptuk a jelentkezésed! 48 órán belül visszajelzünk, hogy szerintünk működne-e nálad a podcast.';
+    status.className = 'form-status ok';
+    this.reset();
+    if (typeof trackLead === 'function') trackLead();
+  } catch (err) {
+    status.textContent = 'A jelentkezést nem sikerült elküldeni. Hívj minket a +36 30 661 4804 számon, vagy írj az info@novastudio.hu címre.';
+    status.className = 'form-status err';
+  }
+  btn.disabled = false; btn.textContent = 'Elküldöm a jelentkezést';
+});
+});
 </script>
 
 <!-- FAQ -->
@@ -591,15 +637,82 @@ document.getElementById('egyedi-form').addEventListener('submit', async function
   </div>
 </section>
 
-<!-- CTA FINAL -->
+<!-- CTA FINAL / PODCAST-FIT -->
 <section class="cta-final" id="jelentkezes">
   <div class="wrap">
     <div class="inner">
-      <span class="kicker">Strategy Fit jelentkezés</span>
+      <span class="kicker">Podcast-fit űrlap</span>
       <h2>Nézzük meg, működne-e nálad a podcast.</h2>
-      <p class="sub">Nem időpontfoglalás és nem vásárlás. Kitöltesz egy rövid kérdőívet a helyzetedről, mi pedig 48 órán belül visszajelzünk, hogy szerintünk van-e benned podcast, és ha igen, milyen. Csak olyan vezetőkkel dolgozunk, akiknél az eredmény reális.</p>
-      <a class="btn" href="https://novastudio.notion.site/257c32f2c061807f8194d3b26e42f176" target="_blank" rel="noopener" onclick="trackLead()">Kitöltöm a kérdőívet</a>
-      <p class="btn-note">5 perc, és kiderül.</p>
+      <p class="sub">Nem időpontfoglalás és nem vásárlás. Kitöltöd ezt a rövid űrlapot a helyzetedről, mi pedig 48 órán belül visszajelzünk, hogy szerintünk van-e benned podcast, és ha igen, milyen. Csak olyan vezetőkkel dolgozunk, akiknél az eredmény reális.</p>
+      <form class="custom-form fit-form" id="fit-form">
+        <div>
+          <label for="fit-nev">Teljes neved</label>
+          <input id="fit-nev" name="nev" type="text" required autocomplete="name">
+        </div>
+        <div class="fit-two">
+          <div>
+            <label for="fit-email">Email címed</label>
+            <input id="fit-email" name="email" type="email" required autocomplete="email">
+          </div>
+          <div>
+            <label for="fit-tel">Telefonszámod</label>
+            <input id="fit-tel" name="telefon" type="tel" required autocomplete="tel">
+          </div>
+        </div>
+        <div>
+          <label for="fit-ceg">Cégnév</label>
+          <input id="fit-ceg" name="cegnev" type="text" required autocomplete="organization">
+        </div>
+        <div>
+          <label for="fit-iparag">Melyik iparágban működik a vállalkozásod?</label>
+          <select id="fit-iparag" name="iparag" required>
+            <option value="" selected disabled>Válassz...</option>
+            <option>Tanácsadás / coaching / tréning</option>
+            <option>B2B szolgáltatás (ügynökség / IT / szakmai szolgáltató)</option>
+            <option>Oktatás / tudásalapú termék</option>
+            <option>Egészség / well-being / performance</option>
+            <option>Pénzügyi / jogi / üzleti szolgáltatás</option>
+            <option>Egyéb</option>
+          </select>
+        </div>
+        <div>
+          <label for="fit-arbevetel">Mekkora volt a céged éves nettó árbevétele?</label>
+          <select id="fit-arbevetel" name="arbevetel" required>
+            <option value="" selected disabled>Válassz...</option>
+            <option>50 millió Ft alatt</option>
+            <option>50 – 150 millió Ft</option>
+            <option>150 – 500 millió Ft</option>
+            <option>500 millió Ft felett</option>
+          </select>
+        </div>
+        <div>
+          <label for="fit-akadaly">Mi a legnagyobb akadálya, hogy következetesen, nyilvánosan képviseld a gondolkodásod?</label>
+          <select id="fit-akadaly" name="akadaly" required>
+            <option value="" selected disabled>Válassz...</option>
+            <option>Nincs rendszere annak, mit és hogyan mondjak</option>
+            <option>Nincs időm strukturáltan foglalkozni vele</option>
+            <option>Nem világos, mit vállaljak fel nyilvánosan</option>
+            <option>Nem látom üzletileg az értelmét</option>
+          </select>
+        </div>
+        <div>
+          <label for="fit-donteshozo">Ki dönt a projekt elindításáról?</label>
+          <select id="fit-donteshozo" name="donteshozo" required>
+            <option value="" selected disabled>Válassz...</option>
+            <option>Én egyedül</option>
+            <option>Üzlettársammal / vezetőtársammal közösen</option>
+            <option>Más dönt a cégnél</option>
+          </select>
+        </div>
+        <label class="fit-check">
+          <input type="checkbox" id="fit-commit" required>
+          <span>Készen állok az indulásra. A Podcast-fitre azokat a vezetőket várjuk, akik a stratégiai beszélgetés után el is tudják indítani a projektet.</span>
+        </label>
+        <input type="text" name="_honey_fit" style="display:none" tabindex="-1" autocomplete="off">
+        <button class="btn" type="submit" id="fit-submit">Elküldöm a jelentkezést</button>
+        <p class="form-status" id="fit-status"></p>
+      </form>
+      <p class="btn-note">2 perc, és kiderül. 48 órán belül visszajelzünk.</p>
     </div>
   </div>
 </section>
