@@ -510,35 +510,11 @@
       </div>
     </div>
     <p class="addons-note">Az extrákat bármelyik forgatási alkalomhoz hozzáteheted, külön szerződés nélkül.</p>
-
-    <div class="custom-box" id="egyedi">
-      <div>
-        <h3>Egyedi igényed van?</h3>
-        <p>Ha a csomag nem pont úgy jó, ahogy van, rakjunk össze egy saját változatot: más ritmus, több epizód, külső helyszín, bármi. Hívj minket, vagy írd meg itt, mire van szükséged, és 48 órán belül visszajelzünk egyedi ajánlattal.</p>
-        <a class="custom-phone" href="tel:+36306614804">📞 +36 30 661 4804</a>
-      </div>
-      <form class="custom-form" id="egyedi-form">
-        <div>
-          <label for="ef-nev">Név</label>
-          <input id="ef-nev" name="nev" type="text" required autocomplete="name">
-        </div>
-        <div>
-          <label for="ef-elerhetoseg">Email vagy telefonszám</label>
-          <input id="ef-elerhetoseg" name="elerhetoseg" type="text" required autocomplete="email">
-        </div>
-        <div>
-          <label for="ef-uzenet">Mire van szükséged?</label>
-          <textarea id="ef-uzenet" name="uzenet" required placeholder="Írd le röviden, mit szeretnél másképp."></textarea>
-        </div>
-        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
-        <button class="btn" type="submit" id="ef-submit">Üzenet küldése</button>
-        <p class="form-status" id="ef-status"></p>
-      </form>
-    </div>
   </div>
 </section>
 
 <script>
+document.addEventListener('DOMContentLoaded', function () {
 document.getElementById('egyedi-form').addEventListener('submit', async function (e) {
   e.preventDefault();
   var btn = document.getElementById('ef-submit');
@@ -567,6 +543,7 @@ document.getElementById('egyedi-form').addEventListener('submit', async function
     status.className = 'form-status err';
   }
   btn.disabled = false; btn.textContent = 'Üzenet küldése';
+});
 });
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -608,34 +585,6 @@ document.getElementById('fit-form').addEventListener('submit', async function (e
 });
 });
 </script>
-
-<!-- FAQ -->
-<section style="padding-top: 0;">
-  <div class="wrap">
-    <span class="kicker">Gyakori kérdések</span>
-    <h2>Amit még tudni érdemes</h2>
-    <details>
-      <summary>Nincs még témám, se vendégem. Így is el tudok indulni?</summary>
-      <p>Igen, pontosan ezért van az első stratégiai beszélgetés. Ott közösen rakjuk össze az adástematikát, és abban is segítünk, milyen vendégeket érdemes meghívnod, hogy a podcast az üzleti célodat szolgálja.</p>
-    </details>
-    <details>
-      <summary>Mennyi időmet veszi el havonta?</summary>
-      <p>A forgatási fél napot, plusz egy 60 perces előkészítő beszélgetést. Minden mást, a forgatás szervezésétől a vágásig, a Nova csapata visz.</p>
-    </details>
-    <details>
-      <summary>Mi van, ha egy hónapban nem fér bele a forgatás?</summary>
-      <p>Semmi. Keretszerződéssel dolgozunk, nincs havidíj és nincs kötelező alkalom. Akkor forgatsz, amikor van rá kapacitásod és üzleti okod.</p>
-    </details>
-    <details>
-      <summary>Hol van a stúdió?</summary>
-      <p>Budapesten, a Nova kreatív főhadiszállásán. Két parkolóhelyet biztosítunk, a vendégeidnek is.</p>
-    </details>
-    <details>
-      <summary>Mikor kapom meg a kész anyagokat?</summary>
-      <p>A forgatás után 2 héten belül, publikálásra készen. A tartalmaid állapotát egy saját dashboardon követheted végig.</p>
-    </details>
-  </div>
-</section>
 
 <!-- CTA FINAL / PODCAST-FIT -->
 <section class="cta-final" id="jelentkezes">
@@ -713,6 +662,64 @@ document.getElementById('fit-form').addEventListener('submit', async function (e
         <p class="form-status" id="fit-status"></p>
       </form>
       <p class="btn-note">Az adataidat csak a visszajelzéshez használjuk.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="wrap">
+    <span class="kicker">Gyakori kérdések</span>
+    <h2>Amit még tudni érdemes</h2>
+    <details>
+      <summary>Nincs még témám, se vendégem. Így is el tudok indulni?</summary>
+      <p>Igen, pontosan ezért van az első stratégiai beszélgetés. Ott közösen rakjuk össze az adástematikát, és abban is segítünk, milyen vendégeket érdemes meghívnod, hogy a podcast az üzleti célodat szolgálja.</p>
+    </details>
+    <details>
+      <summary>Mennyi időmet veszi el havonta?</summary>
+      <p>A forgatási fél napot, plusz egy 60 perces előkészítő beszélgetést. Minden mást, a forgatás szervezésétől a vágásig, a Nova csapata visz.</p>
+    </details>
+    <details>
+      <summary>Mi van, ha egy hónapban nem fér bele a forgatás?</summary>
+      <p>Semmi. Keretszerződéssel dolgozunk, nincs havidíj és nincs kötelező alkalom. Akkor forgatsz, amikor van rá kapacitásod és üzleti okod.</p>
+    </details>
+    <details>
+      <summary>Hol van a stúdió?</summary>
+      <p>Budapesten, a Nova kreatív főhadiszállásán. Két parkolóhelyet biztosítunk, a vendégeidnek is.</p>
+    </details>
+    <details>
+      <summary>Mikor kapom meg a kész anyagokat?</summary>
+      <p>A forgatás után 2 héten belül, publikálásra készen. A tartalmaid állapotát egy saját dashboardon követheted végig.</p>
+    </details>
+  </div>
+</section>
+
+<!-- EGYEDI AJÁNLAT -->
+<section style="padding-top: 0;">
+  <div class="wrap">
+    <div class="custom-box" id="egyedi">
+      <div>
+        <h3>Egyedi igényed van?</h3>
+        <p>Ha a csomag nem pont úgy jó, ahogy van, rakjunk össze egy saját változatot: más ritmus, több epizód, külső helyszín, bármi. Hívj minket, vagy írd meg itt, mire van szükséged, és 48 órán belül visszajelzünk egyedi ajánlattal.</p>
+        <a class="custom-phone" href="tel:+36306614804">📞 +36 30 661 4804</a>
+      </div>
+      <form class="custom-form" id="egyedi-form">
+        <div>
+          <label for="ef-nev">Név</label>
+          <input id="ef-nev" name="nev" type="text" required autocomplete="name">
+        </div>
+        <div>
+          <label for="ef-elerhetoseg">Email vagy telefonszám</label>
+          <input id="ef-elerhetoseg" name="elerhetoseg" type="text" required autocomplete="email">
+        </div>
+        <div>
+          <label for="ef-uzenet">Mire van szükséged?</label>
+          <textarea id="ef-uzenet" name="uzenet" required placeholder="Írd le röviden, mit szeretnél másképp."></textarea>
+        </div>
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+        <button class="btn" type="submit" id="ef-submit">Üzenet küldése</button>
+        <p class="form-status" id="ef-status"></p>
+      </form>
     </div>
   </div>
 </section>
