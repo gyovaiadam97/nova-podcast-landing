@@ -103,6 +103,8 @@
   .hero-bg { position: absolute; inset: 0; }
   /* A fotón az asztal ~53%-nál ül; a szélesítés+eltolás hozza a képernyő közepére */
   .hero-bg img { width: 106%; max-width: none; margin-left: -6%; height: 100%; object-fit: cover; object-position: 53% center; }
+  .hero-bg video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.8s ease; }
+  .hero-bg video.playing { opacity: 1; }
   .hero-bg::after {
     content: ''; position: absolute; inset: 0;
     background: linear-gradient(to top, rgba(11,15,17,0.82) 0%, rgba(11,15,17,0.18) 32%, rgba(11,15,17,0) 55%);
@@ -730,6 +732,26 @@ document.getElementById('fit-form').addEventListener('submit', async function (e
     <div>Budapest</div>
   </div>
 </footer>
+
+<script>
+(function () {
+  // Hero-videó csak desktopon, mozgás-érzékeny és adatspórolós beállításnál marad az állókép
+  if (!window.matchMedia('(min-width: 821px)').matches) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (navigator.connection && navigator.connection.saveData) return;
+  var bg = document.querySelector('.hero-bg');
+  if (!bg) return;
+  var v = document.createElement('video');
+  v.muted = true; v.loop = true; v.playsInline = true; v.autoplay = true;
+  v.setAttribute('muted', ''); v.setAttribute('playsinline', '');
+  v.setAttribute('aria-hidden', 'true');
+  v.src = 'assets/hero-studio.mp4';
+  v.addEventListener('playing', function () { v.classList.add('playing'); });
+  bg.appendChild(v);
+  var p = v.play();
+  if (p && p.catch) p.catch(function () { v.remove(); });
+})();
+</script>
 
 </body>
 </html>
