@@ -121,6 +121,7 @@
   .intro .wrap { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 56px; align-items: center; }
   .intro p.lead { font-size: 1.15rem; color: var(--text); margin-bottom: 30px; max-width: 540px; }
   .intro img { border-radius: 12px; }
+  .intro-video { width: 100%; border-radius: 12px; display: block; background: #000; }
 
   /* LOGO STRIP */
   .logos { padding: 34px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--bg-soft); }
@@ -321,7 +322,9 @@
       <a class="btn" href="#jelentkezes" onclick="trackLead()">Megnézem, működne-e nálam</a>
       <p class="btn-note">Rövid űrlap, 48 órán belül visszajelzünk.</p>
     </div>
-    <img src="assets/asztal-mikrofonok.jpg" alt="Podcast asztal két mikrofonnal a Nova stúdióban">
+    <video class="intro-video" controls preload="none" playsinline poster="assets/kalti-bemutato-poster.jpg">
+      <source src="assets/kalti-bemutato.mp4" type="video/mp4">
+    </video>
   </div>
 </section>
 
