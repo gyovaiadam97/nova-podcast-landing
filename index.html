@@ -260,6 +260,14 @@
   .form-status.ok { display: block; background: rgba(63, 217, 207, 0.12); color: var(--cyan); }
   .form-status.err { display: block; background: rgba(224, 100, 88, 0.14); color: #e88d80; }
   @media (max-width: 820px) {
+    /* Logósáv mobilon: 3+2 logó két sorban, kisebb méretben, hogy ne legyen túl magas */
+    .logos { padding: 24px 0; }
+    .logos .wrap { display: grid; grid-template-columns: repeat(6, 1fr); gap: 18px 8px; align-items: center; }
+    .logos .label { grid-column: 1 / -1; font-size: 0.68rem; letter-spacing: 0.12em; line-height: 1.5; text-wrap: balance; margin-bottom: 4px; }
+    .logos img { justify-self: center; grid-column: span 2; height: 22px; }
+    .logos img.logo-tall { height: 38px; }
+    .logos img:nth-of-type(4) { grid-column: 2 / 4; }
+    .logos img:nth-of-type(5) { grid-column: 4 / 6; }
     .addons-grid { grid-template-columns: 1fr; }
     .custom-box { grid-template-columns: 1fr; padding: 28px 22px; gap: 28px; }
   }
