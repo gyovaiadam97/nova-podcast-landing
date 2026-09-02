@@ -257,6 +257,8 @@
   @media (max-width: 560px) { .fit-two { grid-template-columns: 1fr; } }
   .custom-form textarea { min-height: 110px; resize: vertical; }
   .form-status { font-size: 0.92rem; display: none; padding: 12px 14px; border-radius: 10px; }
+  .consent { font-size: 0.8rem; color: var(--muted); margin-top: 4px; }
+  .consent a { text-decoration: underline; text-underline-offset: 3px; }
   .form-status.ok { display: block; background: rgba(63, 217, 207, 0.12); color: var(--cyan); }
   .form-status.err { display: block; background: rgba(224, 100, 88, 0.14); color: #e88d80; }
   @media (max-width: 820px) {
@@ -291,6 +293,8 @@
 
   footer { padding: 36px 0; border-top: 1px solid var(--line); }
   footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; color: var(--muted); font-size: 0.85rem; }
+  footer .legal a { color: var(--muted); text-decoration: underline; text-underline-offset: 3px; margin-right: 14px; }
+  footer .legal a:hover { color: var(--cyan); }
 
   @media (max-width: 820px) {
     section { padding: 60px 0; }
@@ -445,7 +449,7 @@
     <h2>Akik már beültek a stúdióba</h2>
     <div class="testi-feature">
       <div class="video-embed">
-        <iframe src="https://www.youtube.com/embed/IdcFNbk4H1A" title="Mit gondol Gundel Takács Gábor a Nováról?" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe src="https://www.youtube-nocookie.com/embed/IdcFNbk4H1A" title="Mit gondol Gundel Takács Gábor a Nováról?" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
       <div>
         <blockquote>Különbséget tudok tenni, hogy szakmailag mi a professzionális és mi az amatőr. A Nova podcast-stúdiójában abszolút professzionális körülmények között tudtunk dolgozni.</blockquote>
@@ -468,15 +472,15 @@
     </div>
     <div class="video-row">
       <div class="cell">
-        <div class="video-embed"><iframe src="https://www.youtube.com/embed/vw7Q72YH_Bo" title="Mit gondol Koch Róbert a Nováról?" loading="lazy" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe></div>
+        <div class="video-embed"><iframe src="https://www.youtube-nocookie.com/embed/vw7Q72YH_Bo" title="Mit gondol Koch Róbert a Nováról?" loading="lazy" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe></div>
         <p class="testi-name">Koch Róbert</p>
       </div>
       <div class="cell">
-        <div class="video-embed"><iframe src="https://www.youtube.com/embed/O84sN0XQibk" title="Mit gondol Farkas Attila a Nováról?" loading="lazy" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe></div>
+        <div class="video-embed"><iframe src="https://www.youtube-nocookie.com/embed/O84sN0XQibk" title="Mit gondol Farkas Attila a Nováról?" loading="lazy" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe></div>
         <p class="testi-name">Farkas Attila</p>
       </div>
       <div class="cell">
-        <div class="video-embed"><iframe src="https://www.youtube.com/embed/KPhXqEdnG-Y" title="Mit gondol Gyurácz Zoltán a Nováról?" loading="lazy" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe></div>
+        <div class="video-embed"><iframe src="https://www.youtube-nocookie.com/embed/KPhXqEdnG-Y" title="Mit gondol Gyurácz Zoltán a Nováról?" loading="lazy" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe></div>
         <p class="testi-name">Gyurácz Zoltán</p>
       </div>
     </div>
@@ -673,6 +677,7 @@ document.getElementById('fit-form').addEventListener('submit', async function (e
         </label>
         <input type="text" name="_honey_fit" style="display:none" tabindex="-1" autocomplete="off">
         <button class="btn" type="submit" id="fit-submit">Elküldöm a jelentkezést</button>
+        <p class="consent">A jelentkezés elküldésével elfogadod az <a href="adatkezeles.html" target="_blank" rel="noopener">adatkezelési tájékoztatót</a>.</p>
         <p class="form-status" id="fit-status"></p>
       </form>
       <p class="btn-note">Az adataidat bizalmasan kezeljük.</p>
@@ -732,6 +737,7 @@ document.getElementById('fit-form').addEventListener('submit', async function (e
         </div>
         <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
         <button class="btn" type="submit" id="ef-submit">Üzenet küldése</button>
+        <p class="consent">Az üzenet elküldésével elfogadod az <a href="adatkezeles.html" target="_blank" rel="noopener">adatkezelési tájékoztatót</a>.</p>
         <p class="form-status" id="ef-status"></p>
       </form>
     </div>
@@ -740,8 +746,8 @@ document.getElementById('fit-form').addEventListener('submit', async function (e
 
 <footer>
   <div class="wrap">
-    <div>© 2026 Nova Produkciós Iroda Kft.</div>
-    <div>Budapest</div>
+    <div>© 2026 Nova Produkciós Iroda Kft. · Budapest</div>
+    <div class="legal"><a href="impresszum.html">Impresszum</a><a href="adatkezeles.html">Adatkezelési tájékoztató</a></div>
   </div>
 </footer>
 
